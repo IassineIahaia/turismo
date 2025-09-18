@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descubra Moçambique - Turismo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            padding: 30px 0;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .search-bar {
+            background: white;
+            border-radius: 50px;
+            padding: 15px 25px;
+            margin: 30px auto;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar input {
+            border: none;
+            outline: none;
+            flex: 1;
+            font-size: 1rem;
+            padding: 5px 15px;
+        }
+
+        .search-bar button {
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+        }
+
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .destination-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .destination-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        }
+
+        .card-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.7) 100%);
+        }
+
+        .card-rating {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255,255,255,0.9);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .card-location {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #f8f9ff;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 3% auto;
+            padding: 0;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 20px 20px 0 0;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            right: 25px;
+            top: 25px;
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close:hover {
+            transform: scale(1.1);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .transport-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .transport-card {
+            background: #f8f9ff;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .transport-card:hover {
+            border-color: #667eea;
+            transform: translateY(-3px);
+        }
+
+        .transport-card.selected {
+            border-color: #667eea;
+            background: #e8ecff;
+        }
+
+        .transport-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .transport-details {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .route-info {
+            background: #f0f7ff;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #667eea;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2.5rem; }
+            .destinations-grid { grid-template-columns: 1fr; }
+            .modal-content { width: 95%; margin: 5% auto; }
+            .transport-options { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🏝️ Descubra Moçambique</h1>
+            <p>Explore os destinos mais incríveis do nosso país</p>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Pesquise por destinos, ilhas, cidades..." id="searchInput">
+                <button onclick="searchDestinations()">🔍 Pesquisar</button>
+            </div>
+        </header>
+
+        <main class="destinations-grid" id="destinationsGrid">
+            <!-- Destinos serão inseridos dinamicamente -->
+        </main>
+    </div>
+
+    <!-- Modal para direções -->
+    <div id="directionsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2 id="modalTitle">Como chegar ao destino</h2>
+            </div>
+            <div class="modal-body">
+                <h3>🚗 Escolha seu meio de transporte:</h3>
+                <div class="transport-options">
+                    <div class="transport-card" data-transport="moto" onclick="selectTransport('moto')">
+                        <div class="transport-icon">🏍️</div>
+                        <h4>Moto</h4>
+                        <p>Rápido e econômico</p>
+                        <small>Ideal para curtas distâncias</small>
+                    </div>
+                    <div class="transport-card" data-transport="taxi" onclick="selectTransport('taxi')">
+                        <div class="transport-icon">🚕</div>
+                        <h4>Taxi</h4>
+                        <p>Confortável e seguro</p>
+                        <small>Disponível 24h</small>
+                    </div>
+                    <div class="transport-card" data-transport="carro" onclick="selectTransport('carro')">
+                        <div class="transport-icon">🚗</div>
+                        <h4>Carro Próprio</h4>
+                        <p>Liberdade total</p>
+                        <small>Explore no seu ritmo</small>
+                    </div>
+                </div>
+
+                <div id="transportDetails" class="transport-details">
+                    <h4 id="transportTitle"></h4>
+                    <div class="route-info">
+                        <strong>📍 Rota sugerida:</strong>
+                        <p id="routeDescription"></p>
+                    </div>
+                    <div class="route-info">
+                        <strong>⏱️ Tempo estimado:</strong>
+                        <p id="timeEstimate"></p>
+                    </div>
+                    <div class="route-info">
+                        <strong>💰 Custo aproximado:</strong>
+                        <p id="costEstimate"></p>
+                    </div>
+                    <div class="route-info">
+                        <strong>ℹ️ Dicas importantes:</strong>
+                        <p id="tips"></p>
+                    </div>
+                    <button class="btn btn-primary" onclick="openGoogleMaps()" style="margin-top: 20px;">
+                        🗺️ Abrir no Google Maps
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const destinations = [
+            {
+                id: 1,
+                name: "Ilha de Moçambique",
+                location: "Nampula",
+                image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=500&h=300&fit=crop",
+                rating: "4.8 ⭐",
+                description: "Património Mundial da UNESCO, rica em história e arquitetura colonial portuguesa.",
+                coordinates: [-15.0355, 40.7311],
+                details: {
+                    moto: {
+                        route: "Nampula → EN1 → Lumbo → Ponte → Ilha de Moçambique",
+                        time: "2h 30min",
+                        cost: "150-200 MT",
+                        tips: "Use capacete e cuidado na ponte. Combustível disponível em Lumbo."
+                    },
+                    taxi: {
+                        route: "Transfer direto de Nampula via Lumbo",
+                        time: "2h 15min", 
+                        cost: "800-1200 MT",
+                        tips: "Negocie preço antes. Muitos táxis fazem este trajeto diariamente."
+                    },
+                    carro: {
+                        route: "Nampula → EN1 Norte → Lumbo → Ponte da Ilha",
+                        time: "2h 00min",
+                        cost: "300-400 MT (combustível)",
+                        tips: "Estrada em bom estado. Estacionamento disponível na ilha."
+                    }
+                }
+            },
+            {
+                id: 2,
+                name: "Arquipélago das Quirimbas",
+                location: "Cabo Delgado",
+                image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=500&h=300&fit=crop",
+                rating: "4.9 ⭐",
+                description: "32 ilhas paradisíacas com praias pristinas e vida marinha exuberante.",
+                coordinates: [-12.3717, 40.6215],
+                details: {
+                    moto: {
+                        route: "Pemba → EN380 → Quissanga → Dhow para ilhas",
+                        time: "3h + 1h barco",
+                        cost: "200-300 MT + 500 MT barco",
+                        tips: "Nem todas ilhas são acessíveis de moto. Combine transporte marítimo."
+                    },
+                    taxi: {
+                        route: "Pemba → Quissanga → Transfer para barco",
+                        time: "2h 30min + 1h barco",
+                        cost: "1500-2000 MT + barco",
+                        tips: "Muitos hotéis oferecem transfer completo incluindo barco."
+                    },
+                    carro: {
+                        route: "Pemba → EN380 → Quissanga → Estacionamento seguro",
+                        time: "2h + 1h barco",
+                        cost: "400-600 MT + barco",
+                        tips: "Estrada de terra em alguns trechos. 4x4 recomendado na época chuvosa."
+                    }
+                }
+            },
+            {
+                id: 3,
+                name: "Chocas Mar",
+                location: "Nampula", 
+                image: "https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?w=500&h=300&fit=crop",
+                rating: "4.7 ⭐",
+                description: "Destino mundial para mergulho com tubarões-baleia e raias-manta.",
+                coordinates: [-23.8500, 35.5667],
+                details: {
+                    moto: {
+                        route: "Inhambane → EN1 Sul → Estrada do Tofo",
+                        time: "45min",
+                        cost: "50-80 MT",
+                        tips: "Estrada asfaltada até Inhambane, depois terra batida 22km."
+                    },
+                    taxi: {
+                        route: "Transfer direto Inhambane → Tofo",
+                        time: "35min",
+                        cost: "300-500 MT",
+                        tips: "Táxis regulares fazem este percurso. Combine preço antecipadamente."
+                    },
+                    carro: {
+                        route: "Inhambane → Estrada do Tofo (22km)",
+                        time: "30min",
+                        cost: "100-150 MT (combustível)",
+                        tips: "Estrada de terra em bom estado. Carro normal adequado."
+                    }
+                }
+            },
+            {
+                id: 4,
+                name: "Parque Nacional da Gorongosa",
+                location: "Sofala",
+                image: "https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=500&h=300&fit=crop",
+                rating: "4.6 ⭐", 
+                description: "Um dos maiores parques de vida selvagem de África, lar de elefantes, leões e hipopótamos.",
+                coordinates: [-18.9667, 34.3500],
+                details: {
+                    moto: {
+                        route: "Beira → EN6 → Vila de Gorongosa → Parque",
+                        time: "3h 30min",
+                        cost: "250-350 MT",
+                        tips: "Não é permitido motas dentro do parque. Deixe na entrada."
+                    },
+                    taxi: {
+                        route: "Beira → Vila de Gorongosa → Entrada do Parque",
+                        time: "3h",
+                        cost: "1500-2500 MT",
+                        tips: "Combine tour completo. Muitos operadores oferecem pacotes."
+                    },
+                    carro: {
+                        route: "Beira → EN6 → Vila de Gorongosa → Portão principal",
+                        time: "2h 45min",
+                        cost: "400-600 MT + taxa parque",
+                        tips: "4x4 recomendado para game drives. Combustível na vila."
+                    }
+                }
+            },
+            {
+                id: 5,
+                name: "Nampula",
+                location: "Nampula Cidade",
+                image: "https://images.unsplash.com/photo-1586216703108-6c1c95b5e9b7?w=500&h=300&fit=crop",
+                rating: "4.5 ⭐",
+                description: "Capital vibrante com arquitetura colonial, mercados coloridos e vida noturna animada.",
+                coordinates: [-25.9686, 32.5804],
+                details: {
+                    moto: {
+                        route: "Dentro da cidade - várias rotas disponíveis",
+                        time: "Variável",
+                        cost: "20-50 MT por trajeto",
+                        tips: "Motas-táxi (txopelas) abundantes. Sempre negocie preço."
+                    },
+                    taxi: {
+                        route: "Serviço urbano completo",
+                        time: "Dependendo do trânsito",
+                        cost: "100-300 MT por trajeto",
+                        tips: "Use apps como Txiua ou Uber. Táxis convencionais também disponíveis."
+                    },
+                    carro: {
+                        route: "Rede rodoviária urbana completa",
+                        time: "Variável conforme trânsito",
+                        cost: "Combustível + estacionamento",
+                        tips: "Trânsito intenso nas horas de ponta. Estacionamentos seguros no centro."
+                    }
+                }
+            },
+            {
+                id: 6,
+                name: "Vilanculos",
+                location: "Inhambane",
+                image: "https://images.unsplash.com/photo-1571146015203-c4e3b9344b38?w=500&h=300&fit=crop",
+                rating: "4.8 ⭐",
+                description: "Portal de entrada para o Arquipélago do Bazaruto, com praias deslumbrantes.",
+                coordinates: [-22.0167, 35.3167],
+                details: {
+                    moto: {
+                        route: "EN1 a partir de Inhambane ou Maputo",
+                        time: "4h de Maputo / 1h 30min de Inhambane",
+                        cost: "300-400 MT de Maputo",
+                        tips: "Estrada asfaltada em bom estado. Várias bombas de combustível no caminho."
+                    },
+                    taxi: {
+                        route: "Transfer direto das principais cidades",
+                        time: "3h 30min de Maputo",
+                        cost: "2000-3000 MT de Maputo",
+                        tips: "Muitos operadores turísticos fazem este trajeto diariamente."
+                    },
+                    carro: {
+                        route: "EN1 → Vilanculos (estrada asfaltada)",
+                        time: "3h 15min de Maputo",
+                        cost: "500-700 MT (combustível)",
+                        tips: "Viagem confortável. Hotéis oferecem estacionamento seguro."
+                    }
+                }
+            }
+        ];
+
+        let currentDestination = null;
+        let selectedTransport = null;
+
+        function renderDestinations(destinationsToShow = destinations) {
+            const grid = document.getElementById('destinationsGrid');
+            grid.innerHTML = '';
+
+            destinationsToShow.forEach(destination => {
+                const card = document.createElement('div');
+                card.className = 'destination-card';
+                card.innerHTML = `
+                    <div class="card-image" style="background-image: url('${destination.image}')">
+                        <div class="card-overlay"></div>
+                        <div class="card-rating">${destination.rating}</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">${destination.name}</h3>
+                        <div class="card-location">📍 ${destination.location}</div>
+                        <p class="card-description">${destination.description}</p>
+                        <div class="card-actions">
+                            <button class="btn btn-primary" onclick="showDirections(${destination.id})">
+                                🧭 Como chegar
+                            </button>
+                            <a href="#" class="btn btn-secondary">
+                                ℹ️ Mais info
+                            </a>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function searchDestinations() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = destinations.filter(dest => 
+                dest.name.toLowerCase().includes(searchTerm) ||
+                dest.location.toLowerCase().includes(searchTerm) ||
+                dest.description.toLowerCase().includes(searchTerm)
+            );
+            renderDestinations(filtered);
+        }
+
+        function showDirections(destinationId) {
+            currentDestination = destinations.find(d => d.id === destinationId);
+            if (!currentDestination) return;
+
+            document.getElementById('modalTitle').textContent = `Como chegar a ${currentDestination.name}`;
+            document.getElementById('directionsModal').style.display = 'block';
+            
+            // Reset transport selection
+            selectedTransport = null;
+            document.querySelectorAll('.transport-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            document.getElementById('transportDetails').style.display = 'none';
+        }
+
+        function selectTransport(transport) {
+            selectedTransport = transport;
+            
+            // Update UI
+            document.querySelectorAll('.transport-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            document.querySelector(`[data-transport="${transport}"]`).classList.add('selected');
+            
+            // Show transport details
+            const details = currentDestination.details[transport];
+            const detailsDiv = document.getElementById('transportDetails');
+            
+            document.getElementById('transportTitle').textContent = getTransportName(transport);
+            document.getElementById('routeDescription').textContent = details.route;
+            document.getElementById('timeEstimate').textContent = details.time;
+            document.getElementById('costEstimate').textContent = details.cost;
+            document.getElementById('tips').textContent = details.tips;
+            
+            detailsDiv.style.display = 'block';
+        }
+
+        function getTransportName(transport) {
+            const names = {
+                moto: '🏍️ Viagem de Moto',
+                taxi: '🚕 Viagem de Taxi', 
+                carro: '🚗 Viagem de Carro'
+            };
+            return names[transport];
+        }
+
+        function openGoogleMaps() {
+            if (!currentDestination) return;
+            
+            const [lat, lng] = currentDestination.coordinates;
+            const url = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=driving`;
+            window.open(url, '_blank');
+        }
+
+        function closeModal() {
+            document.getElementById('directionsModal').style.display = 'none';
+        }
+
+        // Event listeners
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchDestinations();
+            }
+        });
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('directionsModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Initialize
+        renderDestinations();
+    </script>
+</body>
+</html>
