@@ -1,6 +1,6 @@
  const destinations = [
 
-    {
+   {
         id: 1,
         name: "Ilha de Moçambique",
         location: "Nampula",
@@ -8,6 +8,50 @@
         rating: "4.8 ⭐",
         description: "Património Mundial da UNESCO, rica em história e arquitetura colonial portuguesa.",
         coordinates: [-15.0355, 40.7311],
+        pointsOfInterest: [
+            {
+                id: 101,
+                name: "Hotel Omuhipiti",
+                category: "🏨 Hotel",
+                description: "Hotel histórico com vista para o oceano",
+                address: "Rua dos Trabalhadores, Ilha de Moçambique",
+                phone: "+258 26 610 138",
+                rating: "4.2 ⭐",
+                transport: {
+                    moto: { time: "5min", cost: "20-30 MT", driver: "Carlos Mateus - +258 87 123 4567" },
+                    taxi: { time: "5min", cost: "50-80 MT", driver: "João Silva - +258 84 987 6543" },
+                    carro: { time: "3min", cost: "10 MT (estacionamento)", driver: "Condução própria" }
+                }
+            },
+            {
+                id: 102,
+                name: "Restaurante Arqueológico",
+                category: "🍽️ Restaurante",
+                description: "Culinária tradicional moçambicana com ambiente histórico",
+                address: "Fortaleza de São Sebastião",
+                phone: "+258 82 345 6789",
+                rating: "4.5 ⭐",
+                transport: {
+                    moto: { time: "3min", cost: "15-25 MT", driver: "António Macamo - +258 86 234 5678" },
+                    taxi: { time: "3min", cost: "40-60 MT", driver: "Maria Santos - +258 85 876 5432" },
+                    carro: { time: "2min", cost: "Gratuito", driver: "Condução própria" }
+                }
+            },
+            {
+                id: 103,
+                name: "Museu da Ilha",
+                category: "🏛️ Museu",
+                description: "História e cultura da Ilha de Moçambique",
+                address: "Palácio dos Capitães Generais",
+                phone: "+258 26 610 169",
+                rating: "4.7 ⭐",
+                transport: {
+                    moto: { time: "4min", cost: "20 MT", driver: "Pedro Nhaca - +258 87 456 7890" },
+                    taxi: { time: "4min", cost: "50 MT", driver: "Ana Macossa - +258 84 567 8901" },
+                    carro: { time: "3min", cost: "Gratuito", driver: "Condução própria" }
+                }
+            }
+        ],
         details: {
             moto: { route: "Nampula → EN1 → Lumbo → Ponte → Ilha de Moçambique", time: "2h 30min", cost: "150-200 MT", tips: "Use capacete e cuidado na ponte. Combustível disponível em Lumbo." },
             taxi: { route: "Transfer direto de Nampula via Lumbo", time: "2h 15min", cost: "800-1200 MT", tips: "Negocie preço antes. Muitos táxis fazem este trajeto diariamente." },
@@ -97,9 +141,10 @@
                             <button class="btn btn-primary" onclick="showDirections(${destination.id})">
                                 🧭 Como chegar
                             </button>
-                            <a href="#" class="btn btn-secondary">
-                                ℹ️ Mais info
-                            </a>
+                            <button class="btn btn-secondary" onclick="showPointsOfInterest(${destination.id})">
+                                ℹ️ Pontos de Interesse
+                            </button>
+
                         </div>
                     </div>
                 `;
@@ -195,3 +240,132 @@
 
 
         
+function showPointsOfInterest(destinationId) {
+    currentDestination = destinations.find(d => d.id === destinationId);
+    if (!currentDestination || !currentDestination.pointsOfInterest) return;
+
+    document.getElementById('poiModalTitle').textContent = `Pontos de Interesse - ${currentDestination.name}`;
+    renderPointsOfInterest();
+    document.getElementById('pointsOfInterestModal').style.display = 'block';
+}
+
+function renderPointsOfInterest() {
+    const container = document.getElementById('poiContainer');
+    container.innerHTML = '';
+
+    currentDestination.pointsOfInterest.forEach(poi => {
+        const poiCard = document.createElement('div');
+        poiCard.className = 'poi-card';
+        poiCard.innerHTML = `
+            <div class="poi-header">
+                <h4>${poi.name}</h4>
+                <span class="poi-category">${poi.category}</span>
+                <span class="poi-rating">${poi.rating}</span>
+            </div>
+            <p class="poi-description">${poi.description}</p>
+            <div class="poi-info">
+                <p><strong>📍 Endereço:</strong> ${poi.address}</p>
+                <p><strong>📞 Telefone:</strong> ${poi.phone}</p>
+            </div>
+            <button class="btn btn-primary" onclick="showPoiDirections(${poi.id})">
+                🧭 Como chegar aqui
+            </button>
+        `;
+        container.appendChild(poiCard);
+    });
+}
+
+function showPoiDirections(poiId) {
+    const poi = currentDestination.pointsOfInterest.find(p => p.id === poiId);
+    if (!poi) return;
+
+    currentPoi = poi;
+    document.getElementById('poiDirectionsModalTitle').textContent = `Como chegar a ${poi.name}`;
+    
+    // Reset transport selection
+    selectedTransportPoi = null;
+    document.querySelectorAll('.transport-card-poi').forEach(card => {
+        card.classList.remove('selected');
+    });
+    document.getElementById('transportDetailsPoi').style.display = 'none';
+    
+    document.getElementById('poiDirectionsModal').style.display = 'block';
+}
+
+function selectTransportPoi(transport) {
+    selectedTransportPoi = transport;
+    
+    // Update UI
+    document.querySelectorAll('.transport-card-poi').forEach(card => {
+        card.classList.remove('selected');
+    });
+    document.querySelector(`[data-transport-poi="${transport}"]`).classList.add('selected');
+    
+    // Show transport details
+    const transportInfo = currentPoi.transport[transport];
+    const detailsDiv = document.getElementById('transportDetailsPoi');
+    
+    document.getElementById('transportTitlePoi').textContent = getTransportName(transport);
+    document.getElementById('timeEstimatePoi').textContent = transportInfo.time;
+    document.getElementById('costEstimatePoi').textContent = transportInfo.cost;
+    document.getElementById('driverInfoPoi').textContent = transportInfo.driver;
+    
+    detailsDiv.style.display = 'block';
+}
+
+function closePoiModal() {
+    document.getElementById('pointsOfInterestModal').style.display = 'none';
+}
+
+function closePoiDirectionsModal() {
+    document.getElementById('poiDirectionsModal').style.display = 'none';
+}
+
+function callDriver() {
+    if (!selectedTransportPoi || !currentPoi) return;
+    
+    const transportInfo = currentPoi.transport[selectedTransportPoi];
+    const phoneNumber = transportInfo.driver.split(' - ')[1];
+    
+    if (phoneNumber && phoneNumber !== 'Condução própria') {
+        window.open(`tel:${phoneNumber}`, '_self');
+    } else {
+        alert('Não há contato disponível para este meio de transporte.');
+    }
+}
+
+// MODIFICAR A FUNÇÃO renderDestinations EXISTENTE
+// Substitua a linha do botão "Mais info" por:
+function renderDestinations(destinationsToShow = destinations) {
+    const grid = document.getElementById('destinationsGrid');
+    grid.innerHTML = '';
+
+    destinationsToShow.forEach(destination => {
+        const card = document.createElement('div');
+        card.className = 'destination-card';
+        card.innerHTML = `
+            <div class="card-image" style="background-image: url('${destination.image}')">
+                <div class="card-overlay"></div>
+                <div class="card-rating">${destination.rating}</div>
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">${destination.name}</h3>
+                <div class="card-location">📍 ${destination.location}</div>
+                <p class="card-description">${destination.description}</p>
+                <div class="card-actions">
+                    <button class="btn btn-primary" onclick="showDirections(${destination.id})">
+                        🧭 Como chegar
+                    </button>
+                    <button class="btn btn-secondary" onclick="showPointsOfInterest(${destination.id})">
+                        ℹ️ Pontos de Interesse
+                    </button>
+                </div>
+            </div>
+        `;
+        grid.appendChild(card);
+    });
+}
+
+// ADICIONAR VARIÁVEIS GLOBAIS NO INÍCIO DO ARQUIVO
+let currentPoi = null;
+let selectedTransportPoi = null;

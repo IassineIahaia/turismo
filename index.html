@@ -89,6 +89,79 @@
         </div>
     </div>
 
+    
+<!-- Modal para Pontos de Interesse -->
+<div id="pointsOfInterestModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close" onclick="closePoiModal()">&times;</span>
+            <h2 id="poiModalTitle">Pontos de Interesse</h2>
+        </div>
+        <div class="modal-body">
+            <div id="poiContainer" class="poi-container">
+                <!-- Pontos de interesse serão inseridos aqui dinamicamente -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para Direções específicas do POI -->
+<div id="poiDirectionsModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close" onclick="closePoiDirectionsModal()">&times;</span>
+            <h2 id="poiDirectionsModalTitle">Como chegar ao local</h2>
+        </div>
+        <div class="modal-body">
+            <h3>🚗 Escolha seu meio de transporte:</h3>
+            <div class="transport-options">
+                <div class="transport-card-poi" data-transport-poi="moto" onclick="selectTransportPoi('moto')">
+                    <div class="transport-icon">🏍️</div>
+                    <h4>Moto</h4>
+                    <p>Rápido e econômico</p>
+                    <small>Ideal para curtas distâncias</small>
+                </div>
+                <div class="transport-card-poi" data-transport-poi="taxi" onclick="selectTransportPoi('taxi')">
+                    <div class="transport-icon">🚕</div>
+                    <h4>Taxi</h4>
+                    <p>Confortável e seguro</p>
+                    <small>Disponível 24h</small>
+                </div>
+                <div class="transport-card-poi" data-transport-poi="carro" onclick="selectTransportPoi('carro')">
+                    <div class="transport-icon">🚗</div>
+                    <h4>Carro Próprio</h4>
+                    <p>Liberdade total</p>
+                    <small>Explore no seu ritmo</small>
+                </div>
+            </div>
+
+            <div id="transportDetailsPoi" class="transport-details-poi">
+                <h4 id="transportTitlePoi"></h4>
+                <div class="poi-transport-info">
+                    <strong>⏱️ Tempo estimado:</strong>
+                    <p id="timeEstimatePoi"></p>
+                </div>
+                <div class="poi-transport-info">
+                    <strong>💰 Custo aproximado:</strong>
+                    <p id="costEstimatePoi"></p>
+                </div>
+                <div class="driver-contact">
+                    <strong>👤 Condutor disponível:</strong>
+                    <p id="driverInfoPoi"></p>
+                    <div class="contact-buttons">
+                        <button class="btn-call" onclick="callDriver()">
+                            📞 Ligar para o Condutor
+                        </button>
+                        <button class="btn btn-secondary" onclick="sendWhatsApp()">
+                            💬 WhatsApp
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
     <script src="script.js">
         
         let currentDestination = null;
@@ -113,6 +186,92 @@
                 .catch(err => console.error('Falha ao registrar Service Worker:', err));
             });
         }
+
+        // ADICIONAR ESTAS FUNÇÕES NO FINAL DO script.js
+
+function sendWhatsApp() {
+    if (!selectedTransportPoi || !currentPoi) return;
+    
+    const transportInfo = currentPoi.transport[selectedTransportPoi];
+    const phoneNumber = transportInfo.driver.split(' - ')[1];
+    const driverName = transportInfo.driver.split(' - ')[0];
+    
+    if (phoneNumber && phoneNumber !== 'Condução própria') {
+        // Remove espaços e símbolos do número de telefone
+        const cleanNumber = phoneNumber.replace(/[\s\-\+\(\)]/g, '');
+        const message = `Olá ${driverName}, encontrei seu contacto no aplicativo Visite Nampula. Preciso de transporte para ${currentPoi.name}. Pode me ajudar?`;
+        const whatsappUrl = `https://wa.me/${cleanNumber}?text=${encodeURIComponent(message)}`;
+        
+        window.open(whatsappUrl, '_blank');
+    } else {
+        alert('WhatsApp não disponível para este meio de transporte.');
+    }
+}
+
+// ADICIONAR EVENTOS DE CLIQUE PARA OS NOVOS MODAIS
+// Adicione este código no final do script, após os event listeners existentes
+
+window.onclick = function(event) {
+    const directionsModal = document.getElementById('directionsModal');
+    const poiModal = document.getElementById('pointsOfInterestModal');
+    const poiDirectionsModal = document.getElementById('poiDirectionsModal');
+    
+    if (event.target === directionsModal) {
+        closeModal();
+    }
+    if (event.target === poiModal) {
+        closePoiModal();
+    }
+    if (event.target === poiDirectionsModal) {
+        closePoiDirectionsModal();
+    }
+}
+
+// FUNÇÃO PARA ADICIONAR PONTOS DE INTERESSE AOS OUTROS DESTINOS
+// Adicione esta estrutura aos outros destinos no array destinations:
+
+// Exemplo para Malema (id: 2):
+const malemaPoiExample = {
+    pointsOfInterest: [
+        {
+            id: 201,
+            name: "Pousada Verde",
+            category: "🏨 Pousada",
+            description: "Hospedagem econômica com ambiente familiar",
+            address: "Centro de Malema",
+            phone: "+258 86 111 2222",
+            rating: "4.0 ⭐",
+            transport: {
+                moto: { time: "8min", cost: "25-35 MT", driver: "Amade Sualehe - +258 87 111 2233" },
+                taxi: { time: "6min", cost: "60-80 MT", driver: "Fatima Nordine - +258 84 222 3344" },
+                carro: { time: "5min", cost: "Gratuito", driver: "Condução própria" }
+            }
+        },
+        {
+            id: 202,
+            name: "Restaurante Sabor Local",
+            category: "🍽️ Restaurante",
+            description: "Especialidades locais e pratos tradicionais",
+            address: "Mercado Central de Malema",
+            phone: "+258 82 333 4455",
+            rating: "4.3 ⭐",
+            transport: {
+                moto: { time: "5min", cost: "20 MT", driver: "José Armando - +258 86 444 5566" },
+                taxi: { time: "4min", cost: "50 MT", driver: "Sandra Macuácua - +258 85 555 6677" },
+                carro: { time: "3min", cost: "Gratuito", driver: "Condução própria" }
+            }
+        }
+    ]
+};
+
+// FUNÇÃO UTILITÁRIA PARA VALIDAR NÚMEROS DE TELEFONE
+function isValidPhoneNumber(phone) {
+    const phoneRegex = /^\+?258\s?[0-9]{2}\s?[0-9]{3}\s?[0-9]{4}$/;
+    return phoneRegex.test(phone.replace(/\s/g, ''));
+}
+
+
+
     </script>
 </body>
 </html>
