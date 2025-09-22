@@ -1,179 +1,78 @@
  const destinations = [
-            {
-                id: 1,
-                name: "Ilha de Moçambique",
-                location: "Nampula",
-                image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=500&h=300&fit=crop",
-                rating: "4.8 ⭐",
-                description: "Património Mundial da UNESCO, rica em história e arquitetura colonial portuguesa.",
-                coordinates: [-15.0355, 40.7311],
-                details: {
-                    moto: {
-                        route: "Nampula → EN1 → Lumbo → Ponte → Ilha de Moçambique",
-                        time: "2h 30min",
-                        cost: "150-200 MT",
-                        tips: "Use capacete e cuidado na ponte. Combustível disponível em Lumbo."
-                    },
-                    taxi: {
-                        route: "Transfer direto de Nampula via Lumbo",
-                        time: "2h 15min", 
-                        cost: "800-1200 MT",
-                        tips: "Negocie preço antes. Muitos táxis fazem este trajeto diariamente."
-                    },
-                    carro: {
-                        route: "Nampula → EN1 Norte → Lumbo → Ponte da Ilha",
-                        time: "2h 00min",
-                        cost: "300-400 MT (combustível)",
-                        tips: "Estrada em bom estado. Estacionamento disponível na ilha."
-                    }
-                }
-            },
-            {
-                id: 2,
-                name: "Arquipélago das Quirimbas",
-                location: "Cabo Delgado",
-                image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=500&h=300&fit=crop",
-                rating: "4.9 ⭐",
-                description: "32 ilhas paradisíacas com praias pristinas e vida marinha exuberante.",
-                coordinates: [-12.3717, 40.6215],
-                details: {
-                    moto: {
-                        route: "Pemba → EN380 → Quissanga → Dhow para ilhas",
-                        time: "3h + 1h barco",
-                        cost: "200-300 MT + 500 MT barco",
-                        tips: "Nem todas ilhas são acessíveis de moto. Combine transporte marítimo."
-                    },
-                    taxi: {
-                        route: "Pemba → Quissanga → Transfer para barco",
-                        time: "2h 30min + 1h barco",
-                        cost: "1500-2000 MT + barco",
-                        tips: "Muitos hotéis oferecem transfer completo incluindo barco."
-                    },
-                    carro: {
-                        route: "Pemba → EN380 → Quissanga → Estacionamento seguro",
-                        time: "2h + 1h barco",
-                        cost: "400-600 MT + barco",
-                        tips: "Estrada de terra em alguns trechos. 4x4 recomendado na época chuvosa."
-                    }
-                }
-            },
-            {
-                id: 3,
-                name: "Chocas Mar",
-                location: "Nampula", 
-                image: "https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?w=500&h=300&fit=crop",
-                rating: "4.7 ⭐",
-                description: "Destino mundial para mergulho com tubarões-baleia e raias-manta.",
-                coordinates: [-23.8500, 35.5667],
-                details: {
-                    moto: {
-                        route: "Inhambane → EN1 Sul → Estrada do Tofo",
-                        time: "45min",
-                        cost: "50-80 MT",
-                        tips: "Estrada asfaltada até Inhambane, depois terra batida 22km."
-                    },
-                    taxi: {
-                        route: "Transfer direto Inhambane → Tofo",
-                        time: "35min",
-                        cost: "300-500 MT",
-                        tips: "Táxis regulares fazem este percurso. Combine preço antecipadamente."
-                    },
-                    carro: {
-                        route: "Inhambane → Estrada do Tofo (22km)",
-                        time: "30min",
-                        cost: "100-150 MT (combustível)",
-                        tips: "Estrada de terra em bom estado. Carro normal adequado."
-                    }
-                }
-            },
-            {
-                id: 4,
-                name: "Parque Nacional da Gorongosa",
-                location: "Sofala",
-                image: "https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=500&h=300&fit=crop",
-                rating: "4.6 ⭐", 
-                description: "Um dos maiores parques de vida selvagem de África, lar de elefantes, leões e hipopótamos.",
-                coordinates: [-18.9667, 34.3500],
-                details: {
-                    moto: {
-                        route: "Beira → EN6 → Vila de Gorongosa → Parque",
-                        time: "3h 30min",
-                        cost: "250-350 MT",
-                        tips: "Não é permitido motas dentro do parque. Deixe na entrada."
-                    },
-                    taxi: {
-                        route: "Beira → Vila de Gorongosa → Entrada do Parque",
-                        time: "3h",
-                        cost: "1500-2500 MT",
-                        tips: "Combine tour completo. Muitos operadores oferecem pacotes."
-                    },
-                    carro: {
-                        route: "Beira → EN6 → Vila de Gorongosa → Portão principal",
-                        time: "2h 45min",
-                        cost: "400-600 MT + taxa parque",
-                        tips: "4x4 recomendado para game drives. Combustível na vila."
-                    }
-                }
-            },
-            {
-                id: 5,
-                name: "Nampula",
-                location: "Nampula Cidade",
-                image: "https://images.unsplash.com/photo-1586216703108-6c1c95b5e9b7?w=500&h=300&fit=crop",
-                rating: "4.5 ⭐",
-                description: "Capital vibrante com arquitetura colonial, mercados coloridos e vida noturna animada.",
-                coordinates: [-25.9686, 32.5804],
-                details: {
-                    moto: {
-                        route: "Dentro da cidade - várias rotas disponíveis",
-                        time: "Variável",
-                        cost: "20-50 MT por trajeto",
-                        tips: "Motas-táxi (txopelas) abundantes. Sempre negocie preço."
-                    },
-                    taxi: {
-                        route: "Serviço urbano completo",
-                        time: "Dependendo do trânsito",
-                        cost: "100-300 MT por trajeto",
-                        tips: "Use apps como Txiua ou Uber. Táxis convencionais também disponíveis."
-                    },
-                    carro: {
-                        route: "Rede rodoviária urbana completa",
-                        time: "Variável conforme trânsito",
-                        cost: "Combustível + estacionamento",
-                        tips: "Trânsito intenso nas horas de ponta. Estacionamentos seguros no centro."
-                    }
-                }
-            },
-            {
-                id: 6,
-                name: "Vilanculos",
-                location: "Inhambane",
-                image: "https://images.unsplash.com/photo-1571146015203-c4e3b9344b38?w=500&h=300&fit=crop",
-                rating: "4.8 ⭐",
-                description: "Portal de entrada para o Arquipélago do Bazaruto, com praias deslumbrantes.",
-                coordinates: [-22.0167, 35.3167],
-                details: {
-                    moto: {
-                        route: "EN1 a partir de Inhambane ou Maputo",
-                        time: "4h de Maputo / 1h 30min de Inhambane",
-                        cost: "300-400 MT de Maputo",
-                        tips: "Estrada asfaltada em bom estado. Várias bombas de combustível no caminho."
-                    },
-                    taxi: {
-                        route: "Transfer direto das principais cidades",
-                        time: "3h 30min de Maputo",
-                        cost: "2000-3000 MT de Maputo",
-                        tips: "Muitos operadores turísticos fazem este trajeto diariamente."
-                    },
-                    carro: {
-                        route: "EN1 → Vilanculos (estrada asfaltada)",
-                        time: "3h 15min de Maputo",
-                        cost: "500-700 MT (combustível)",
-                        tips: "Viagem confortável. Hotéis oferecem estacionamento seguro."
-                    }
-                }
-            }
-        ];
+
+    {
+        id: 1,
+        name: "Ilha de Moçambique",
+        location: "Nampula",
+        image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=500&h=300&fit=crop",
+        rating: "4.8 ⭐",
+        description: "Património Mundial da UNESCO, rica em história e arquitetura colonial portuguesa.",
+        coordinates: [-15.0355, 40.7311],
+        details: {
+            moto: { route: "Nampula → EN1 → Lumbo → Ponte → Ilha de Moçambique", time: "2h 30min", cost: "150-200 MT", tips: "Use capacete e cuidado na ponte. Combustível disponível em Lumbo." },
+            taxi: { route: "Transfer direto de Nampula via Lumbo", time: "2h 15min", cost: "800-1200 MT", tips: "Negocie preço antes. Muitos táxis fazem este trajeto diariamente." },
+            carro: { route: "Nampula → EN1 Norte → Lumbo → Ponte da Ilha", time: "2h 00min", cost: "300-400 MT (combustível)", tips: "Estrada em bom estado. Estacionamento disponível na ilha." }
+        }
+    },
+    {
+        id: 2,
+        name: "Malema",
+        location: "Nampula",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&h=300&fit=crop",
+        rating: "4.6 ⭐",
+        description: "Área natural conhecida por suas paisagens verdes, cachoeiras e cultura local vibrante.",
+        coordinates: [-15.0123, 39.6578],
+        details: {
+            moto: { route: "Nampula → EN1 → Malema", time: "1h 40min", cost: "100-150 MT", tips: "Estrada de terra em alguns trechos. Combustível disponível em Malema." },
+            taxi: { route: "Transfer direto de Nampula", time: "1h 30min", cost: "600-900 MT", tips: "Negocie o preço antes de sair." },
+            carro: { route: "Nampula → EN1 Norte → Malema", time: "1h 30min", cost: "200-300 MT", tips: "Boa estrada na maior parte do percurso. 4x4 recomendado em época de chuva." }
+        }
+    },
+    {
+        id: 3,
+        name: "Monapo",
+        location: "Nampula",
+        image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=500&h=300&fit=crop",
+        rating: "4.7 ⭐",
+        description: "Região tranquila com planícies verdes e locais ideais para caminhadas e aventuras na natureza.",
+        coordinates: [-15.2500, 39.4500],
+        details: {
+            moto: { route: "Nampula → EN13 → Monapo", time: "2h 10min", cost: "120-180 MT", tips: "Alguns trechos de estrada de terra. Levar água e lanche." },
+            taxi: { route: "Transfer de Nampula", time: "2h", cost: "700-1000 MT", tips: "Negocie preço antes." },
+            carro: { route: "Nampula → EN13 → Monapo", time: "2h", cost: "250-350 MT", tips: "4x4 recomendado na estação chuvosa." }
+        }
+    },
+    {
+        id: 4,
+        name: "Namialo",
+        location: "Nampula",
+        image: "https://images.unsplash.com/photo-1526401485004-0e9c867e4b62?w=500&h=300&fit=crop",
+        rating: "4.5 ⭐",
+        description: "Pequena vila conhecida pelo seu ambiente calmo e belas paisagens naturais.",
+        coordinates: [-15.3500, 39.7000],
+        details: {
+            moto: { route: "Nampula → EN1 → Namialo", time: "1h 20min", cost: "80-120 MT", tips: "Estrada parcialmente de terra. Viagem tranquila." },
+            taxi: { route: "Transfer direto de Nampula", time: "1h 10min", cost: "500-700 MT", tips: "Combine preço antecipadamente." },
+            carro: { route: "Nampula → EN1 → Namialo", time: "1h 10min", cost: "150-200 MT", tips: "Boa estrada, carro comum serve." }
+        }
+    },
+    {
+        id: 5,
+        name: "Ilha de Moçambique",
+        location: "Nampula",
+        image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=500&h=300&fit=crop",
+        rating: "4.8 ⭐",
+        description: "Património Mundial da UNESCO, rica em história e arquitetura colonial portuguesa.",
+        coordinates: [-15.0355, 40.7311],
+        details: {
+            moto: { route: "Nampula → EN1 → Lumbo → Ponte → Ilha de Moçambique", time: "2h 30min", cost: "150-200 MT", tips: "Use capacete e cuidado na ponte. Combustível disponível em Lumbo." },
+            taxi: { route: "Transfer direto de Nampula via Lumbo", time: "2h 15min", cost: "800-1200 MT", tips: "Negocie preço antes. Muitos táxis fazem este trajeto diariamente." },
+            carro: { route: "Nampula → EN1 Norte → Lumbo → Ponte da Ilha", time: "2h 00min", cost: "300-400 MT (combustível)", tips: "Estrada em bom estado. Estacionamento disponível na ilha." }
+        }
+    }
+];
+
+
 
         let currentDestination = null;
         let selectedTransport = null;
