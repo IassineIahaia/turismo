@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotel Omuhipity - Visit Nampula</title>
+    <link rel="stylesheet" href="restaurantes.css">
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="../../../index.html" class="nav-logo">VISITNAMPULA</a>
+        <a href="../../../eguia.html" class="nav-back">← Voltar ao Guia</a>
+      </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+      <div class="hero-content">
+        <span class="place-category"> Hotel</span>
+        <h1 class="place-title">Hotel Omuhipity</h1>
+        <p class="place-location"> Nampula, Moçambique</p>
+      </div>
+    </section>
+
+    <!-- Galeria de Imagens -->
+    <section class="gallery-section">
+      <div class="gallery-slider">
+        <div class="slider-container" id="sliderContainer">
+          <img
+            src="imagens/omuhipity1.jpeg"
+            alt="Hotel Omuhipity - Exterior"
+            class="slider-image"
+          />
+          <img
+              src="imagens/omuhipity2.jpeg"
+            alt="Quartos do Hotel Omuhipity"
+            class="slider-image"
+          />
+          <img
+              src="imagens/omuhipity3.jpeg"
+            alt="Piscina do Hotel Omuhipity"
+            class="slider-image"
+          />
+          <img
+             src="imagens/omuhipity4.jpeg"
+            alt="Restaurante do Hotel Omuhipity"
+            class="slider-image"
+          />
+        </div>
+        <button class="slider-btn slider-btn-prev" onclick="moveSlide(-1)">‹</button>
+        <button class="slider-btn slider-btn-next" onclick="moveSlide(1)">›</button>
+        <div class="slider-dots" id="dotsContainer"></div>
+      </div>
+    </section>
+
+    <!-- Conteúdo Principal -->
+    <div class="main-content">
+      <!-- Coluna Esquerda -->
+      <div class="content-left">
+        <h2 class="section-title">Sobre o Hotel</h2>
+        <p class="description-text">
+          O <strong>Hotel Omuhipity</strong> é uma das melhores opções de hospedagem em Nampula, 
+          combinando conforto moderno com a hospitalidade moçambicana. Situado numa zona central, 
+          o hotel oferece fácil acesso ao aeroporto e aos principais pontos turísticos da cidade.
+        </p>
+        <p class="description-text">
+          Com quartos espaçosos, restaurante de alta qualidade e um atendimento acolhedor, 
+          o Omuhipity é ideal tanto para viajantes de negócios quanto para quem visita a 
+          província em lazer. Cada detalhe foi pensado para proporcionar uma estadia relaxante 
+          e inesquecível.
+        </p>
+
+        <div class="features-grid">
+          <div class="feature-item">
+            <span class="feature-icon"></span>
+            <div class="feature-text">
+              <h4>Quartos Confortáveis</h4>
+              <p>Equipados com ar-condicionado e Wi-Fi gratuito</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon"></span>
+            <div class="feature-text">
+              <h4>Restaurante & Bar</h4>
+              <p>Culinária local e internacional com ambiente elegante</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon"></span>
+            <div class="feature-text">
+              <h4>Piscina</h4>
+              <p>Área de lazer perfeita para relaxar após um dia intenso</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon"></span>
+            <div class="feature-text">
+              <h4>Salas de Conferência</h4>
+              <p>Infraestrutura moderna para eventos e reuniões</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Serviços e Quartos -->
+        <div class="menu-section">
+          <h2 class="section-title">Tipos de Quartos</h2>
+          <div class="menu-items">
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <h4>Quarto Standard</h4>
+                <p>Perfeito para estadias curtas com todo o conforto essencial</p>
+              </div>
+              <span class="menu-item-price">3.000 MT / noite</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <h4>Quarto Executivo</h4>
+                <p>Com espaço adicional, TV por satélite e varanda privada</p>
+              </div>
+              <span class="menu-item-price">4.500 MT / noite</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <h4>Suíte Luxo</h4>
+                <p>Vista panorâmica e banheira de hidromassagem</p>
+              </div>
+              <span class="menu-item-price">6.000 MT / noite</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="content-sidebar">
+        <div class="info-box">
+          <h3>Informações</h3>
+          <div class="info-item">
+            <span class="info-icon"></span>
+            <div class="info-text">
+              <div class="info-label">Classificação</div>
+              <div class="info-value">4.7 / 5.0 (312 avaliações)</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <span class="info-icon"></span>
+            <div class="info-text">
+              <div class="info-label">Check-in / Check-out</div>
+              <div class="info-value">14:00 / 11:00</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <span class="info-icon"></span>
+            <div class="info-text">
+              <div class="info-label">Telefone</div>
+              <div class="info-value">+258 85 678 9101</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <span class="info-icon"></span>
+            <div class="info-text">
+              <div class="info-label">Email</div>
+              <div class="info-value">reservas@omuhipityhotel.co.mz</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <span class="info-icon"></span>
+            <div class="info-text">
+              <div class="info-label">Localização</div>
+              <div class="info-value">Av. do Trabalho, Nampula, Moçambique</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <h3>Como Chegar</h3>
+          <div class="action-buttons">
+            <a
+              href="https://www.google.com/maps?q=Hotel+Omuhipity+Nampula"
+              class="btn-action btn-maps"
+              target="_blank"
+            >
+              <span class="btn-icon"></span>
+              Abri E-guia turístico
+            </a>
+            <a
+              href="https://wa.me/258856789101"
+              class="btn-action btn-whatsapp"
+              target="_blank"
+            >
+              <span class="btn-icon"></span>
+              Contactar agencia de turismo
+            </a>
+          </div>
+          <p style="color:#666;font-size:0.9rem;margin-top:1rem;text-align:center;">
+            Clique para obter direções ou faça já a sua reserva
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; 2024 Visit Nampula. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="rescript.js"></script>
+  </body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restaurante Vista Mar - Visit Nampula</title>
+    <link rel="stylesheet" href="restaurantes.css">
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="../../../index.html" class="nav-logo">VISITNAMPULA</a>
+        <a href="../../../eguia.html" class="nav-back">← Voltar ao Guia</a>
+      </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+      <div class="hero-content">
+        <span class="place-category">Restaurante</span>
+        <h1 class="place-title">Restaurante Vista Mar</h1>
+        <p class="place-location">Ilha de Moçambique, Nampula</p>
+      </div>
+    </section>
+
+    <!-- Galeria de Imagens -->
+    <section class="gallery-section">
+      <div class="gallery-slider">
+        <div class="slider-container" id="sliderContainer">
+          <img
+            src="/assets/images/bg1.jpg"
+            alt="Vista Mar 1"
+            class="slider-image"
+          />
+          <img
+            src="/assets/images/Ilha4.jpeg"
+            alt="Vista Mar 2"
+            class="slider-image"
+          />
+          <img
+            src="/assets/images/vilacapriho.jpeg"
+            alt="Vista Mar 3"
+            class="slider-image"
+          />
+          <img
+            src="/assets/images/montanha.png"
+            alt="Vista Mar 4"
+            class="slider-image"
+          />
+        </div>
+        <button class="slider-btn slider-btn-prev" onclick="moveSlide(-1)">
+          ‹
+        </button>
+        <button class="slider-btn slider-btn-next" onclick="moveSlide(1)">
+          ›
+        </button>
+        <div class="slider-dots" id="dotsContainer"></div>
+      </div>
+    </section>
+
+    <!-- Conteúdo Principal -->
+    <div class="main-content">
+      <!-- Coluna Esquerda -->
+      <div class="content-left">
+        <h2 class="section-title">Sobre o Restaurante</h2>
+        <p class="description-text">
+          O Restaurante Vista Mar é um verdadeiro paraíso gastronómico
+          localizado na histórica Ilha de Moçambique, Património Mundial da
+          UNESCO. Com uma vista deslumbrante para o oceano Índico, oferecemos
+          uma experiência culinária única que combina os sabores autênticos da
+          cozinha moçambicana com frutos do mar frescos pescados diariamente.
+        </p>
+        <p class="description-text">
+          O nosso ambiente acolhedor e a decoração inspirada na cultura makhuwa
+          criam o cenário perfeito para refeições memoráveis. Seja para um
+          almoço romântico ao pôr do sol ou um jantar especial com a família, o
+          Vista Mar proporciona momentos inesquecíveis.
+        </p>
+
+        <div class="features-grid">
+          <div class="feature-item">
+            <span class="feature-icon"></span>
+            <div class="feature-text">
+              <h4>Frutos do Mar Frescos</h4>
+              <p>Peixe, camarão e lagosta do dia</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon"></span>
+            <div class="feature-text">
+              <h4>Vista Panorâmica</h4>
+              <p>Terraço com vista para o oceano</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon"></span>
+            <div class="feature-text">
+              <h4>Chef Experiente</h4>
+              <p>Culinária tradicional e internacional</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon"></span>
+            <div class="feature-text">
+              <h4>Carta de Vinhos</h4>
+              <p>Seleção de vinhos nacionais</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Menu/Cardápio -->
+        <div class="menu-section">
+          <h2 class="section-title">Destaques do Menu</h2>
+          <div class="menu-items">
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <h4>Lagosta Grelhada</h4>
+                <p>Lagosta fresca grelhada com manteiga de alho e limão</p>
+              </div>
+              <span class="menu-item-price">2.500 MT</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <h4>Peixe à Ilha</h4>
+                <p>Peixe do dia grelhado com molho de coco e especiarias</p>
+              </div>
+              <span class="menu-item-price">1.200 MT</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <h4>Camarão Tigre</h4>
+                <p>Camarão gigante salteado com piri-piri e cerveja</p>
+              </div>
+              <span class="menu-item-price">1.800 MT</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <h4>Matapa Tradicional</h4>
+                <p>Prato típico com folhas de mandioca, amendoim e camarão</p>
+              </div>
+              <span class="menu-item-price">800 MT</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="content-sidebar">
+        <div class="info-box">
+          <h3>Informações</h3>
+          <div class="info-item">
+            <span class="info-icon"></span>
+            <div class="info-text">
+              <div class="info-label">Classificação</div>
+              <div class="info-value">4.8 / 5.0 (124 avaliações)</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <span class="info-icon"></span>
+            <div class="info-text">
+              <div class="info-label">Horário</div>
+              <div class="info-value">Seg-Dom: 11:00 - 22:00</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <span class="info-icon"></span>
+            <div class="info-text">
+              <div class="info-label">Preço Médio</div>
+              <div class="info-value">800 - 2.500 MT por pessoa</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">📞</span>
+            <div class="info-text">
+              <div class="info-label">Telefone</div>
+              <div class="info-value">+258 84 123 4567</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">✨</span>
+            <div class="info-text">
+              <div class="info-label">Especialidades</div>
+              <div class="info-value">Frutos do mar, Cozinha Moçambicana</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <h3>Como Chegar</h3>
+          <div class="action-buttons">
+            <a
+              href="#"
+              class="btn-action btn-maps"
+              onclick="openGoogleMaps(event)"
+            >
+              <span class="btn-icon">📍</span>
+              Abrir no Google Maps
+            </a>
+            <a
+              href="#"
+              class="btn-action btn-whatsapp"
+              onclick="openWhatsApp(event)"
+            >
+              <span class="btn-icon">💬</span>
+              Contactar via WhatsApp
+            </a>
+          </div>
+          <p
+            style="
+              color: #666;
+              font-size: 0.9rem;
+              margin-top: 1rem;
+              text-align: center;
+            "
+          >
+            Clique para obter direções ou contacte-nos para reservas
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; 2024 Visit Nampula. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="rescript.js"></script>
+  </body>
+</html>

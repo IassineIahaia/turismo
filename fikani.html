@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ilha de Moçambique - Guia Turístico | Visit Nampula</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lato:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/fikani.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="nav-logo">VISITNAMPULA</a>
+        <a href="index.html" class="nav-back">← Voltar</a>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero-section">
+      <div class="hero-slider">
+        <div
+          class="hero-slide active"
+          style="background-image: url(&quot;assets/images/image1.jpg&quot;)"
+        ></div>
+        <div
+          class="hero-slide"
+          style="background-image: url(&quot;assets/images/image7.jpg&quot;)"
+        ></div>
+        <div
+          class="hero-slide"
+          style="background-image: url(&quot;assets/images/image6.jpg&quot;)"
+        ></div>
+        <div
+          class="hero-slide"
+          style="background-image: url(&quot;assets/images/image7.jpg&quot;)"
+        ></div>
+        <div
+          class="hero-slide"
+          style="background-image: url(&quot;assets/images/hero.png&quot;)"
+        ></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-badge">🏛️ PATRIMÔNIO MUNDIAL UNESCO • NAMPULA</div>
+        <h1 class="hero-title">Ilha de Moçambique</h1>
+        <p class="hero-subtitle">Onde o Índico abraça séculos de história</p>
+        <div class="hero-divider"></div>
+      </div>
+      <div class="slider-controls">
+        <button class="slider-btn prev-btn">‹</button>
+        <button class="slider-btn next-btn">›</button>
+      </div>
+      <div class="slider-indicators">
+        <span class="indicator active" data-index="0"></span>
+        <span class="indicator" data-index="1"></span>
+        <span class="indicator" data-index="2"></span>
+        <span class="indicator" data-index="3"></span>
+      </div>
+    </section>
+
+    <main>
+      <!-- INTRO -->
+      <section class="intro-section">
+        <div class="container">
+          <div class="intro-grid">
+            <div class="intro-text">
+              <h2>Uma ilha, mil anos de história</h2>
+              <p>
+                A <strong>Ilha de Moçambique</strong>, joia da Província de
+                Nampula, é um dos lugares mais fascinantes de África. Com apenas
+                3 km de comprimento, esta pequena ilha guarda em si séculos de
+                civilizações — árabe, suaíli, portuguesa e africana — fundidas
+                numa arquitectura única que encanta o mundo inteiro.
+              </p>
+              <p>
+                Classificada
+                <strong>Património Mundial da UNESCO em 1991</strong>, a ilha
+                possui uma densidade histórica raríssima: a mesquita mais antiga
+                da África Austral, fortalezas coloniais, palácios do século XVI
+                e ruas de pedra que sussurram histórias de navegadores e
+                mercadores de especiarias.
+              </p>
+              <p>
+                Rodeada pelo turquesa do Oceano Índico, com pescadores a partir
+                em dhows ao amanhecer e o cheiro a peixe grelhado a atravessar
+                as ruelas — a Ilha de Moçambique é, acima de tudo, um lugar
+                vivo.
+              </p>
+              <div class="unesco-badge">
+                🏛️ UNESCO World Heritage Site — desde 1991
+              </div>
+            </div>
+            <div class="intro-visual">
+              <img
+                src="assets/images/Ilha4.jpeg"
+                alt="Vista aérea da Ilha de Moçambique"
+                loading="lazy"
+              />
+              <div class="intro-visual-tag">
+                "A ilha que o tempo preservou para o mundo"
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FACTS -->
+      <section class="facts-strip">
+        <div class="container">
+          <div class="facts-grid">
+            <div class="fact-item">
+              <div class="fact-number">+500</div>
+              <div class="fact-label">Anos de história documentada</div>
+            </div>
+            <div class="fact-item">
+              <div class="fact-number">3km</div>
+              <div class="fact-label">Comprimento total da ilha</div>
+            </div>
+            <div class="fact-item">
+              <div class="fact-number">1991</div>
+              <div class="fact-label">Classificação UNESCO</div>
+            </div>
+            <div class="fact-item">
+              <div class="fact-number">18+</div>
+              <div class="fact-label">Monumentos históricos</div>
+            </div>
+            <div class="fact-item">
+              <div class="fact-number">∞</div>
+              <div class="fact-label">Histórias para descobrir</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GALLERY -->
+      <section class="gallery-section">
+        <div class="container">
+          <h2 class="section-heading centered">Galeria de Imagens</h2>
+          <p class="gallery-intro">
+            Uma viagem visual pelos lugares mais deslumbrantes da ilha e
+            arredores
+          </p>
+
+          <div id="gallery-root"></div>
+
+          <div class="gallery-footer">
+            <div class="gallery-counter" id="gallery-counter"></div>
+            <button
+              class="btn-load-more"
+              id="btn-load-more"
+              onclick="loadMore()"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <path d="M12 5v14M5 12l7 7 7-7" />
+              </svg>
+              Ver mais fotos
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- SPOTS GUIDE -->
+      <section class="spots-section">
+        <div class="container">
+          <h2 class="section-heading centered">O que Visitar</h2>
+          <p class="spots-intro">
+            Os locais imperdíveis da Ilha de Moçambique e arredores de Nampula
+          </p>
+          <div class="spots-grid">
+            <div class="spot-card">
+              <div class="spot-image">
+                <img
+                  src="assets/images/Ilha4.jpeg"
+                  alt="Fortaleza de São Sebastião"
+                  loading="lazy"
+                />
+                <span class="spot-tag">Histórico</span>
+              </div>
+              <div class="spot-body">
+                <h3>Fortaleza de São Sebastião</h3>
+                <p>
+                  A maior fortaleza portuguesa construída em África, erguida no
+                  século XVI. Imponente, intacta e repleta de história — uma
+                  visita obrigatória para quem chega à ilha.
+                </p>
+                <div class="spot-meta">
+                  <span>⏱ 1–2h</span>
+                  <span>🏛️ Séc. XVI</span>
+                  <span>🎟️ Entrada paga</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="spot-card">
+              <div class="spot-image">
+                <img
+                  src="assets/images/Ilha.jpeg"
+                  alt="Palácio de São Paulo"
+                  loading="lazy"
+                />
+                <span class="spot-tag">Museu</span>
+              </div>
+              <div class="spot-body">
+                <h3>Palácio e Museu de São Paulo</h3>
+                <p>
+                  Antiga residência dos governadores e hoje museu de arte sacra,
+                  mobiliário indo-português e peças coloniais raras. Um tesouro
+                  cultural único em Moçambique.
+                </p>
+                <div class="spot-meta">
+                  <span>⏱ 1–1.5h</span>
+                  <span>🖼️ Arte colonial</span>
+                  <span>📚 Guias disponíveis</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="spot-card">
+              <div class="spot-image">
+                <img
+                  src="assets/images/vilacapriho.jpeg"
+                  alt="Ilhas Crussi e Jamaili"
+                  loading="lazy"
+                />
+                <span class="spot-tag">Natureza</span>
+              </div>
+              <div class="spot-body">
+                <h3>Ilhas de Crussi e Jamaili</h3>
+                <p>
+                  Duas joias escondidas ao largo de Mossuril, com praias de
+                  areia branca intocada, recifes de coral e biodiversidade
+                  marinha de excepção. Perfeito para mergulho.
+                </p>
+                <div class="spot-meta">
+                  <span>🚢 Barco local</span>
+                  <span>🤿 Mergulho</span>
+                  <span>🐠 Snorkeling</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="spot-card">
+              <div class="spot-image">
+                <img
+                  src="assets/images/danca-tufo.jpg"
+                  alt="Dança Tufo"
+                  loading="lazy"
+                />
+                <span class="spot-tag">Cultura</span>
+              </div>
+              <div class="spot-body">
+                <h3>Dança Tufo & Cultura Swahili</h3>
+                <p>
+                  A Dança Tufo é expressão artística única da Ilha, de origem
+                  árabe, praticada pelas mulheres em festividades. Ver uma
+                  apresentação ao vivo é inesquecível.
+                </p>
+                <div class="spot-meta">
+                  <span>💃 Festivais locais</span>
+                  <span>🎶 Música ao vivo</span>
+                  <span>🕌 Herança árabe</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="spot-card">
+              <div class="spot-image">
+                <img
+                  src="assets/images/food.jpeg"
+                  alt="Gastronomia"
+                  loading="lazy"
+                />
+                <span class="spot-tag">Gastronomia</span>
+              </div>
+              <div class="spot-body">
+                <h3>Gastronomia do Índico</h3>
+                <p>
+                  Camarão grelhado, peixe fresco, caril de caranguejo e matapa
+                  de amendoim — a cozinha da ilha é uma fusão de sabores
+                  africanos, árabes e portugueses.
+                </p>
+                <div class="spot-meta">
+                  <span>🦐 Frutos do mar</span>
+                  <span>🌶️ Culinária local</span>
+                  <span>🌴 Restaurantes à beira-mar</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="spot-card">
+              <div class="spot-image">
+                <img
+                  src="assets/images/om1.jpeg"
+                  alt="Cidade de Pedra"
+                  loading="lazy"
+                />
+                <span class="spot-tag">Arquitectura</span>
+              </div>
+              <div class="spot-body">
+                <h3>A Cidade de Pedra e Cal</h3>
+                <p>
+                  As ruelas da Cidade de Pedra guardam igrejas barrocas,
+                  mesquitas antigas e mansões abandonadas — um labirinto onde
+                  cada esquina esconde uma história de séculos.
+                </p>
+                <div class="spot-meta">
+                  <span>🚶 Tour a pé</span>
+                  <span>📷 Fotografia</span>
+                  <span>🕌 Mesquita Séc. XV</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CULTURE / PEOPLE -->
+      <section class="culture-section">
+        <div class="container">
+          <div class="culture-inner">
+            <div class="culture-text">
+              <h2 class="section-heading">O Povo da Ilha</h2>
+              <p>
+                A Ilha de Moçambique não é apenas pedra e história — é,
+                sobretudo, o seu povo. Macua, suaíli, árabe e português
+                fundiram-se em gerações de ilhéus que carregam com orgulho uma
+                identidade única no mundo.
+              </p>
+              <p>
+                Os pescadores partem antes do amanhecer nos seus
+                <strong>dhows</strong> de vela triangular. As mulheres pintam os
+                rostos com <strong>mussiro</strong> — pasta branca de raíz local
+                — e conversam à sombra das mangueiras. As crianças mergulham dos
+                cais com sorrisos largos.
+              </p>
+              <p>
+                Conhecer o povo da ilha é a melhor forma de a entender. Os
+                visitantes são recebidos com uma hospitalidade que é, ela
+                própria, herança de séculos de convivência entre culturas do
+                Índico.
+              </p>
+              <div class="culture-tags">
+                <span class="culture-tag">🎭 Dança Tufo</span>
+                <span class="culture-tag">⛵ Cultura Dhow</span>
+                <span class="culture-tag">🌸 Mussiro</span>
+                <span class="culture-tag">🎵 Música tradicional</span>
+                <span class="culture-tag">🕌 Herança Islâmica</span>
+                <span class="culture-tag">🇵🇹 Herança Portuguesa</span>
+              </div>
+            </div>
+            <div class="culture-photos">
+              <div class="culture-photo">
+                <img
+                  src="assets/images/danca-tufo.jpg"
+                  alt="Dança Tufo"
+                  loading="lazy"
+                />
+              </div>
+              <div class="culture-photo">
+                <img
+                  src="assets/images/vilacapriho.jpeg"
+                  alt="Vida local na Ilha"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIDEO SECTION -->
+      <section class="video-section">
+        <div class="container">
+          <h2 class="section-heading centered">Experiências em Vídeo</h2>
+          <p class="video-intro">
+            Mergulhe na atmosfera da Ilha de Moçambique antes mesmo de chegar
+          </p>
+          <div class="video-grid">
+            <div class="video-main">
+              <img
+                src="assets/images/Ilha.jpeg"
+                alt="Vídeo principal da Ilha"
+                loading="lazy"
+              />
+              <div class="video-play-btn">▶</div>
+              <div class="video-cap">
+                <h4>Ilha de Moçambique — Documentário</h4>
+                <p>Um mergulho na história e beleza desta joia do Índico</p>
+              </div>
+            </div>
+            <div class="video-side">
+              <div class="video-thumb">
+                <img
+                  src="assets/images/danca-tufo.jpg"
+                  alt="Tufo"
+                  loading="lazy"
+                />
+                <div class="video-thumb-play">▶</div>
+                <div class="video-thumb-label">Dança Tufo — Cultura Viva</div>
+              </div>
+              <div class="video-thumb">
+                <img
+                  src="assets/images/Ilha4.jpeg"
+                  alt="Fortaleza"
+                  loading="lazy"
+                />
+                <div class="video-thumb-play">▶</div>
+                <div class="video-thumb-label">Fortaleza de São Sebastião</div>
+              </div>
+              <div class="video-thumb">
+                <img
+                  src="assets/images/vilacapriho.jpeg"
+                  alt="Praias"
+                  loading="lazy"
+                />
+                <div class="video-thumb-play">▶</div>
+                <div class="video-thumb-label">Praias e Mergulho — Crussi</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRAVEL INFO -->
+      <section class="info-section">
+        <div class="container">
+          <h2 class="section-heading centered">Informação para Viajantes</h2>
+          <div class="info-grid">
+            <div class="info-card">
+              <div class="info-icon">✈️</div>
+              <h3>Como Chegar</h3>
+              <p>
+                Voo directo para Nampula cidade. 3 horas de estrada até à Ilha
+                de Moçambique. Táxis e transportes colectivos disponíveis na
+                cidade.
+              </p>
+            </div>
+            <div class="info-card">
+              <div class="info-icon">🌤️</div>
+              <h3>Melhor Época</h3>
+              <p>
+                Maio a Outubro (época seca) é o período ideal. Temperaturas
+                amenas 22–30°C. Evite Dezembro–Março durante as chuvas
+                tropicais.
+              </p>
+            </div>
+            <div class="info-card">
+              <div class="info-icon">🏨</div>
+              <h3>Onde Ficar</h3>
+              <p>
+                Hotéis boutique e casas de hóspedes dentro da Cidade de Pedra,
+                vários com vista ao mar. Reserva antecipada altamente
+                recomendada.
+              </p>
+            </div>
+            <div class="info-card">
+              <div class="info-icon">💡</div>
+              <h3>Dicas Locais</h3>
+              <p>
+                Explore as ruelas a pé ao amanhecer. Prove o caril de
+                caranguejo. Leve chapéu e protetor solar. Respeite as
+                comunidades e os espaços sagrados.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta-section">
+        <div class="container">
+          <div class="cta-box">
+            <div class="cta-content">
+              <h2 class="cta-title">Descubra a Ilha de Moçambique</h2>
+              <p class="cta-text">
+                Um lugar único no mundo — onde o Oceano Índico abraça cinco
+                séculos de história, onde o Swahili se mistura com o Português,
+                e onde cada pedra conta uma história. A Ilha de Moçambique
+                aguarda por si.
+              </p>
+              <div class="cta-highlight">
+                <h3>🏛️ Visite o Nosso Stand na FIKANI 2025</h3>
+                <p>
+                  Vilankulo, Inhambane — conheça todos os destinos de Nampula
+                </p>
+              </div>
+              <p class="cta-slogan">
+                Nampula — onde o interior encontra o mar.
+              </p>
+            </div>
+            <div class="cta-image">
+              <img
+                src="assets/images/Ilha4.jpeg"
+                alt="Ilha de Moçambique"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="contact-bar">
+        <div class="container">
+          <div class="contact-content">
+            <div class="contact-item">
+              <span class="contact-icon">📧</span>
+              <span>info@visitnampula.co.mz</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">📞</span>
+              <span>+258 84 825 0315</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">🌐</span>
+              <span>www.visitnampula.co.mz</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p class="footer-text">
+          © 2025 Província de Nampula • Ilha de Moçambique — Património Mundial
+          da UNESCO
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      const slides = document.querySelectorAll(".hero-slide");
+      const indicators = document.querySelectorAll(".indicator");
+      let current = 0,
+        timer;
+
+      function goTo(n) {
+        slides[current].classList.remove("active");
+        indicators[current].classList.remove("active");
+        current = (n + slides.length) % slides.length;
+        slides[current].classList.add("active");
+        indicators[current].classList.add("active");
+      }
+
+      function auto() {
+        timer = setInterval(() => goTo(current + 1), 5000);
+      }
+
+      document.querySelector(".prev-btn").addEventListener("click", () => {
+        clearInterval(timer);
+        goTo(current - 1);
+        auto();
+      });
+      document.querySelector(".next-btn").addEventListener("click", () => {
+        clearInterval(timer);
+        goTo(current + 1);
+        auto();
+      });
+      indicators.forEach((ind, i) =>
+        ind.addEventListener("click", () => {
+          clearInterval(timer);
+          goTo(i);
+          auto();
+        }),
+      );
+
+      auto();
+
+
+
+       const GALLERY_IMAGES = [
+    { src: "assets/images/galeria/20260204_152924-24.jpg",        loc: "", name: "",      desc: "" },
+    { src: "assets/images/galeria/20260204_151222-11.jpg",       loc: "", name: "Fortaleza de São Sebastião", desc: "Séc. XVI" },
+    { src: "assets/images/galeria/20260204_153412-30.jpg", loc: "",  name: "",   desc: "" },
+    { src: "assets/images/galeria/20260204_154241-32.jpg",   loc: "",      name: "Dança Tufo",                desc: "" },
+    { src: "assets/images/galeria/20260204_160026-37.jpg",        loc: "", name: "Gastronomia do Mar",        desc: "" },
+    { src: "assets/images/galeria/20260204_160938-52 - Copy.jpg",         loc: "", name: "Vida Local & Hospitalidade",desc: "" },
+    { src: "assets/images/galeria/DJI_20260204132421_0292_D-42 - Copy.jpg",       loc: "", name: "Panorama da Ilha",          desc: "" },
+    { src: "assets/images/galeria/DJI_20260204133814_0298_D-204.jpg",       loc: "", name: "Costa Leste",               desc: "" },
+    { src: "assets/images/galeria/IMG_0143-1.jpg",       loc: "", name: "Pôr do Sol no Índico",      desc: "" },
+    { src: "assets/images/galeria/IMG_0161-13.jpg",         loc: "", name: "Vista Aérea",               desc: "Do alto da ilha" },
+    { src: "assets/images/galeria/IMG_0207-39.jpg",         loc: "", name: "Vista Aérea",               desc: "Do alto da ilha" },
+    { src: "assets/images/galeria/IMG_0217-46.jpg",         loc: "", name: "Vista Aérea",               desc: "Do alto da ilha" },
+    { src: "assets/images/galeria/IMG_0243-67.jpg",         loc: "", name: "Vista Aérea",               desc: "Do alto da ilha" },
+    { src: "assets/images/galeria/IMG_0254-78.jpg",         loc: "", name: "Vista Aérea",               desc: "Do alto da ilha" },
+    { src: "assets/images/galeria/IMG_0255-79.jpg",         loc: "", name: "Vista Aérea",               desc: "Do alto da ilha" },
+    { src: "assets/images/galeria/IMG_0283-100 - Copy.jpg",         loc: "", name: "Vista Aérea",               desc: "Do alto da ilha" },
+    { src: "assets/images/galeria/IMG_0312-30 - Copy.jpg",         loc: "", name: "Vista Aérea",               desc: "Do alto da ilha" },
+    { src: "assets/images/galeria/IMG_0330-138.jpg",         loc: "", name: "Vista Aérea",               desc: "Do alto da ilha" },
+    { src: "assets/images/galeria/IMG_0354-161.jpg",         loc: "", name: "Vista Aérea",               desc: "Do alto da ilha" },
+    /* Adicione mais imagens a partir daqui */
+  ];
+
+  const BATCH_SIZE = 10;
+  let loaded = 0;
+
+  function buildBento(images) {
+    const wrapper = document.createElement("div");
+    wrapper.className = "gallery-batch";
+
+    const grid = document.createElement("div");
+    grid.className = "gallery-bento";
+    wrapper.appendChild(grid);
+
+    images.forEach((img, idx) => {
+      const item = document.createElement("div");
+      item.className = "gallery-item animate-in" + (idx === 0 ? " gallery-item-large" : "");
+      item.style.animationDelay = (idx * 0.05) + "s";
+      item.innerHTML = `
+        <img src="${img.src}" alt="${img.name}" loading="lazy" />
+        <div class="gallery-caption">
+          <div class="loc">${img.loc}</div>
+          <div class="place-name">${img.name}</div>
+          ${img.desc ? `<div class="count">${img.desc}</div>` : ""}
+        </div>`;
+      grid.appendChild(item);
+    });
+
+    return wrapper;
+  }
+
+  function updateCounter() {
+    const total   = GALLERY_IMAGES.length;
+    const showing = Math.min(loaded, total);
+    document.getElementById("gallery-counter").innerHTML =
+      `Mostrando <span>${showing}</span> de <span>${total}</span> fotografias`;
+  }
+
+  function loadMore() {
+    const root  = document.getElementById("gallery-root");
+    const btn   = document.getElementById("btn-load-more");
+    const batch = GALLERY_IMAGES.slice(loaded, loaded + BATCH_SIZE);
+    if (!batch.length) return;
+
+    const bento = buildBento(batch);
+    root.appendChild(bento);
+    loaded += batch.length;
+    updateCounter();
+
+    if (loaded > BATCH_SIZE) bento.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (loaded >= GALLERY_IMAGES.length) btn.style.display = "none";
+  }
+
+  loadMore(); // carrega o primeiro lote ao abrir a página
+
+    </script>
+  </body>
+</html>
